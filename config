@@ -229,28 +229,28 @@ exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10
 mode "middle_mouse" {
 
     # Move very fast via kjlæ
-    bindsym j exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh up    50
-    bindsym h exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh left  50
-    bindsym k exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh down  50
-    bindsym l exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 50
+    bindsym j exec blender.sh up    50
+    bindsym h exec blender.sh left  50
+    bindsym k exec blender.sh down  50
+    bindsym l exec blender.sh right 50
 
     # Move fast with wasd
-    bindsym w exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh up    10
-    bindsym a exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh left  10
-    bindsym s exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh down  10
-    bindsym d exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 10
+    bindsym w exec blender.sh up    10
+    bindsym a exec blender.sh left  10
+    bindsym s exec blender.sh down  10
+    bindsym d exec blender.sh right 10
 
     # Move slow with shift+kjlæ
-    bindsym shift+j exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh up    5
-    bindsym shift+h exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh left  5
-    bindsym shift+k exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh down  5
-    bindsym shift+l exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 5
+    bindsym shift+j exec blender.sh up    5
+    bindsym shift+h exec blender.sh left  5
+    bindsym shift+k exec blender.sh down  5
+    bindsym shift+l exec blender.sh right 5
 
     # Move very slow with shift+wasd
-    bindsym shift+w exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh up    1
-    bindsym shift+a exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh left  1
-    bindsym shift+s exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh down  1
-    bindsym shift+d exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 1
+    bindsym shift+w exec blender.sh up    1
+    bindsym shift+a exec blender.sh left  1
+    bindsym shift+s exec blender.sh down  1
+    bindsym shift+d exec blender.sh right 1
 
     # Exiting mode
     bindsym $mod+m exec xdotool mouseup 2; mode "default"
@@ -264,28 +264,28 @@ bindsym $mod+m mode "middle_mouse"; exec xdotool mousedown --clearmodifiers 2
 mode "middle_mouse_g" {
 
     # Move very fast via kjlæ
-    bindsym j exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh up    50
-    bindsym h exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh left  50
-    bindsym k exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh down  50
-    bindsym l exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 50
+    bindsym j exec blender.sh up    50
+    bindsym h exec blender.sh left  50
+    bindsym k exec blender.sh down  50
+    bindsym l exec blender.sh right 50
 
     # Move fast with wasd
-    bindsym w exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh up    10
-    bindsym a exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh left  10
-    bindsym s exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh down  10
-    bindsym d exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 10
+    bindsym w exec blender.sh up    10
+    bindsym a exec blender.sh left  10
+    bindsym s exec blender.sh down  10
+    bindsym d exec blender.sh right 10
 
     # Move slow with shift+kjlæ
-    bindsym shift+j exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh up    5
-    bindsym shift+h exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh left  5
-    bindsym shift+k exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh down  5
-    bindsym shift+l exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 5
+    bindsym shift+j exec blender.sh up    5
+    bindsym shift+h exec blender.sh left  5
+    bindsym shift+k exec blender.sh down  5
+    bindsym shift+l exec blender.sh right 5
 
     # Move very slow with shift+wasd
-    bindsym shift+w exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh up    1
-    bindsym shift+a exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh left  1
-    bindsym shift+s exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh down  1
-    bindsym shift+d exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 1
+    bindsym shift+w exec blender.sh up    1
+    bindsym shift+a exec blender.sh left  1
+    bindsym shift+s exec blender.sh down  1
+    bindsym shift+d exec blender.sh right 1
 
     # Exiting mode
     bindsym $mod+g exec xdotool keyup Super_L mouseup 2 click 1 ; mode "default"
