@@ -229,28 +229,28 @@ exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10
 mode "middle_mouse" {
 
     # Move very fast via kjlæ
-    bindsym j exec blender.sh up    50
-    bindsym h exec blender.sh left  50
-    bindsym k exec blender.sh down  50
-    bindsym l exec blender.sh right 50
+    bindsym j exec ~/.config/i3/blender.sh up    50
+    bindsym h exec ~/.config/i3/blender.sh left  50
+    bindsym k exec ~/.config/i3/blender.sh down  50
+    bindsym l exec ~/.config/i3/blender.sh right 50
 
     # Move fast with wasd
-    bindsym w exec blender.sh up    10
-    bindsym a exec blender.sh left  10
-    bindsym s exec blender.sh down  10
-    bindsym d exec blender.sh right 10
+    bindsym w exec ~/.config/i3/blender.sh up    10
+    bindsym a exec ~/.config/i3/blender.sh left  10
+    bindsym s exec ~/.config/i3/blender.sh down  10
+    bindsym d exec ~/.config/i3/blender.sh right 10
 
     # Move slow with shift+kjlæ
-    bindsym shift+j exec blender.sh up    5
-    bindsym shift+h exec blender.sh left  5
-    bindsym shift+k exec blender.sh down  5
-    bindsym shift+l exec blender.sh right 5
+    bindsym shift+j exec ~/.config/i3/blender.sh up    5
+    bindsym shift+h exec ~/.config/i3/blender.sh left  5
+    bindsym shift+k exec ~/.config/i3/blender.sh down  5
+    bindsym shift+l exec ~/.config/i3/blender.sh right 5
 
     # Move very slow with shift+wasd
-    bindsym shift+w exec blender.sh up    1
-    bindsym shift+a exec blender.sh left  1
-    bindsym shift+s exec blender.sh down  1
-    bindsym shift+d exec blender.sh right 1
+    bindsym shift+w exec ~/.config/i3/blender.sh up    1
+    bindsym shift+a exec ~/.config/i3/blender.sh left  1
+    bindsym shift+s exec ~/.config/i3/blender.sh down  1
+    bindsym shift+d exec ~/.config/i3/blender.sh right 1
 
     # Exiting mode
     bindsym $mod+m exec xdotool mouseup 2; mode "default"
