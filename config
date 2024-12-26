@@ -288,9 +288,9 @@ mode "middle_mouse_g" {
     bindsym shift+d exec /home/brian/Persinal/Scripts/BQN/rayed-bqn/blender.sh right 1
 
     # Exiting mode
-    bindsym $mod+g exec xdotool keyup Super_L key Enter  mouseup 2 key Enter ; mode "default"
-    bindsym Escape exec xdotool keyup Super_L key Escape mouseup 2 key Escape; mode "default"
-    bindsym Return exec xdotool keyup Super_L key Enter  mouseup 2 key Enter ; mode "default"
+    bindsym $mod+g exec xdotool keyup Super_L mouseup 2 click 1 ; mode "default"
+    bindsym Escape exec xdotool keyup Super_L mouseup 2 click 1; mode "default"
+    bindsym Return exec xdotool keyup Super_L mouseup 2 click 1 ; mode "default"
 }
 
 # mode "middle_mouse_g";
