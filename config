@@ -36,7 +36,8 @@ exec --no-startup-id nm-applet
 # I can't get this to work
 # exec --no-startup-id copyq
 
-exec xinput disable 11
+# disable touchscreen
+exec xinput disable "$(xinput | egrep 'touch' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -310,5 +311,3 @@ bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+Return workspace next
 bindsym $mod+Shift+BackSpace workspace prev
-
-
