@@ -313,3 +313,6 @@ bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+Return workspace next
 bindsym $mod+Shift+BackSpace workspace prev
+
+# Open music folder for manual delition
+bindsym $mod+shift+m exec open /mnt/0AD47A53D47A414D/Users/brian/Music/
