@@ -4,6 +4,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+# List possible keys with "xmodmap -pke"
 
 # i3 config file (v4)
 #
@@ -21,6 +22,8 @@ font pango:monospace 8
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
+
+exec --no-startup-id ./border-hop.bash
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -43,9 +46,10 @@ bindsym $mod+Shift+t exec xinput disable "$(xinput | egrep 'touch' | bqn -e '•
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/raise-volume.sh 10
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/raise-volume.bash 10
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% # No limit volume increase
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym Control+Shift+2 exec --no-startup-id ~/.config/i3/raise-volume.sh 1
+bindsym Control+Shift+2 exec --no-startup-id ~/.config/i3/raise-volume.bash 1
 bindsym Control+Shift+1 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
 
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -53,7 +57,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 hide_edge_borders both
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# Use $mod+Mouse to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
@@ -71,10 +75,10 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus up
-bindsym $mod+h focus left
+bindsym $mod+l focus up
+bindsym $mod+j focus left
 bindsym $mod+k focus down
-bindsym $mod+l focus right
+bindsym $mod+ae focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Up focus up
@@ -175,16 +179,28 @@ mode "resize" {
     # Pressing right will grow the window’s width.
     # Pressing up will shrink the window’s height.
     # Pressing down will grow the window’s height.
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym j  resize shrink width 10 px or 10 ppt
+    bindsym k  resize grow height 10 px or 10 ppt
+    bindsym l  resize shrink height 10 px or 10 ppt
     bindsym ae resize grow width 10 px or 10 ppt
 
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Left  resize shrink width 10 px or 10 ppt
+    bindsym Down  resize grow height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym j+Shift  resize shrink width 1 px or 1 ppt
+    bindsym k+Shift  resize grow height 1 px or 1 ppt
+    bindsym l+Shift  resize shrink height 1 px or 1 ppt
+    bindsym ae+Shift resize grow width 1 px or 1 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left+Shift  resize shrink width 1 px or 1 ppt
+    bindsym Down+Shift  resize grow height 1 px or 1 ppt
+    bindsym Up+Shift    resize shrink height 1 px or 1 ppt
+    bindsym Right+Shift resize grow width 1 px or 1 ppt
+
 
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
@@ -327,9 +343,17 @@ bindsym $mod+Shift+m exec nemo /mnt/0AD47A53D47A414D/Users/brian/Music/
 #for_window [title="Battery Warning"] sticky enable
 
 # exec_always --no-startup-id feh --bg-scale ~/Pictures/background.jpg
-# exec --no-startup-id ~/.config/i3/motivation-morse.sh
+#exec --no-startup-id ~/.config/i3/motivation-morse.bash
 
 # Keyboard backlight toggle
 bindsym $mod+Shift+p exec light -S "$(expr \"100.00\" != \"$(light -G -s sysfs/leds/platform::kbd_backlight)\")00" -s sysfs/leds/platform::kbd_backlight
 
-# List keys with "xmodmap -pke"
+## Disable touchpad rightclick, right click with $mod+space
+#exec_always xinput --set-button-map 13 1 2 3 4 5 6 7
+#bindsym $mod+space exec xdotool getmouselocation | xdotool mousemove  click 3
+
+## Fetch current mouse position and display it
+#bindsym $mod+Shift+p exec sh -c 'xdotool getmouselocation | xmessage -file -'
+
+
+bindsym $mod+Control+Shift+m exec cd /mnt/0AD47A53D47A414D/Users/brian/Music && python3 /mnt/0AD47A53D47A414D/Users/brian/Music/brians-playlist-manager/downloader.py && cd -
