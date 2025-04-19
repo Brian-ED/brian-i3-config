@@ -1,4 +1,5 @@
 #!/bin/bash
+# jump workspaces with mouse cursor on borders
 
 cornerSpace=200
 lowerCorner="$((1919-$cornerSpace))"
