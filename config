@@ -49,7 +49,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/raise-volume.bash 10
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% # No limit volume increase
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym Control+Shift+2 exec --no-startup-id ~/.config/i3/raise-volume.bash 1
+bindsym Control+Shift+2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
 bindsym Control+Shift+1 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
 
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
