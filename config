@@ -105,7 +105,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+bindsym $mod+Shift+w layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -167,6 +167,17 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Control+Shift+e exec i3-msg exit
+
+bindsym $mod+s mode "secret"
+
+mode "secret" {
+    bindsym Left exec xdotool key --delay 6 --repeat 50 BackSpace
+
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+s mode "default"
+}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
