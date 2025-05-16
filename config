@@ -11,13 +11,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:monospace 8
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# Font for window titles and also bars by default
+font pango:BQN386 Unicode 15
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -25,12 +20,9 @@ exec --no-startup-id dex --autostart --environment i3
 
 exec --no-startup-id ./border-hop.bash
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# The combination of xss-lock, nm-applet and wpctl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-#exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/lockscreen.png --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -40,20 +32,20 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id copyq
 
 # disable touchscreen
-exec xinput disable "$(xinput | egrep 'touch' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
-bindsym $mod+t       exec xinput enable "$(xinput | egrep 'touch' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
-bindsym $mod+Shift+t exec xinput disable "$(xinput | egrep 'touch' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
+exec xinput disable "$(xinput | egrep 'touch|Finger' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
+bindsym $mod+t       exec xinput enable "$(xinput | egrep 'touch|Finger' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
+bindsym $mod+Shift+t exec xinput disable "$(xinput | egrep 'touch|Finger' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
 
-# Use pactl to adjust volume in PulseAudio.
+# Sound settings using wpctl to adjust volume in Pipewire.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/raise-volume.bash 10
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% # No limit volume increase
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym Control+Shift+2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
-bindsym Control+Shift+1 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
-
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+set $speaker "$(wpctl status | egrep '\*.*Speaker'  | grep -oE '[0-9]+' | head -n 1)" # Getting main audio output device, so a speaker
+set $microphone "$(wpctl status | egrep '\*.*Microphone'  | grep -oE '[0-9]+' | head -n 1)" # Getting main audio input device, so a microphone
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume $speaker 10%+ --limit 1
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume $speaker 10%-
+bindsym Control+Shift+2 exec --no-startup-id wpctl set-volume $speaker 1%+
+bindsym Control+Shift+1 exec --no-startup-id wpctl set-volume $speaker 1%-
+bindsym XF86AudioMute exec --no-startup-id wpctl set-mute $speaker toggle
+bindsym XF86AudioMicMute exec --no-startup-id wpctl set-source-mute $microphone toggle
 
 hide_edge_borders both
 
@@ -229,18 +221,15 @@ bar {
 # use my system settings
 exec --no-startup-id csd-xsettings
 
-# set monitor resolution
-#Sxrandr --output eDP-1 --mode 1920x1080
-
-# set wallpaper
-#exec_always feh --bg-fill /usr/share/backgrounds/linuxmint/default_background.jpg
-#exec_always --no-startup-id feh --bg-scale ~/Pictures/background.jpg
+# set monitor resolution (I don't remember why i ever needed this. I have used it in the last 3 months, but I don't remember why.)
+#Sxrandr --output eDP-1 --mode 1920x1080 # On Mint
+#exec --no-startup-id xrandr --output Virtual-1 --mode 1920x1080 # On NixOS
 
 # set brightness keys
-bindsym       XF86MonBrightnessDown exec light -U 5
-bindsym shift+XF86MonBrightnessDown exec light -U 1
-bindsym       XF86MonBrightnessUp   exec light -A 5
-bindsym shift+XF86MonBrightnessUp   exec light -A 1
+bindsym       XF86MonBrightnessDown exec brightnessctl --min-value=10000 --exponent=4 set 10%-
+bindsym shift+XF86MonBrightnessDown exec brightnessctl --min-value=10000 set  1%-
+bindsym       XF86MonBrightnessUp   exec brightnessctl --min-value=10000 --exponent=4 set +10%
+bindsym shift+XF86MonBrightnessUp   exec brightnessctl --min-value=10000 set +1%
 
 # set layout to faroese and with alt it's BQN
 #exec_always setxkbmap -layout fo -option # IDK sometimes i need this to reset keyboard
@@ -256,12 +245,13 @@ bindsym Print exec gnome-screenshot -i
 #crop-area screenshot by pressing Mod + printscreen
 bindsym $mod+Print exec gnome-screenshot -a
 
-
 # Background image gen: convert -scale 1920x1580 -crop 1920x1580+0+200 background.jpg lockscreen.png
 bindsym $mod+x exec i3lock -i ~/Pictures/lockscreen.png
+# xss-lock enables suspending. I don't like it currently.
+#exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/lockscreen.png --nofork
 
 
-bindsym $mod+c exec code ~/.config/i3/
+bindsym $mod+c exec "if command -v code &> /dev/null; then code ~/.config/i3/; else codium ~/brian-i3-config; fi"
 
 bindsym $mod+o exec ~/Desktop/Obsidian-1.6.7.AppImage
 
