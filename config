@@ -14,6 +14,11 @@ set $mod Mod4
 # Font for window titles and also bars by default
 font pango:BQN386 Unicode 15
 
+default_border pixel 0
+focus_on_window_activation focus # I sometimes wait for a few minutes for a browser to load something and then realize it has a popup outside the fullscreen. I hope this fixes it.
+workspace_auto_back_and_forth yes # Going to the same workspace you're in goes to last place you were at.
+for_window [all] title_window_icon on # Enable window icons shown when stacking and tabbing windows
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
@@ -329,8 +334,6 @@ mode "middle_mouse_g" {
 
 # mode "middle_mouse_g";
 bindsym $mod+g exec xdotool keyup Super_L keyup g key g keydown Super_L mousedown --clearmodifiers 2; mode "middle_mouse_g"
-
-bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+Return workspace next
 bindsym $mod+Shift+BackSpace workspace prev
