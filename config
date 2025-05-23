@@ -16,8 +16,13 @@ font pango:BQN386 Unicode 15
 
 default_border pixel 0
 focus_on_window_activation focus # I sometimes wait for a few minutes for a browser to load something and then realize it has a popup outside the fullscreen. I hope this fixes it.
-workspace_auto_back_and_forth yes # Going to the same workspace you're in goes to last place you were at.
 for_window [all] title_window_icon on # Enable window icons shown when stacking and tabbing windows
+popup_during_fullscreen smart
+
+bindsym $mod+p exec xcolor | xclip -selection clipboard
+
+# Going back to where you were last
+bindsym $mod+Tab workspace back_and_forth
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -37,9 +42,9 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id copyq
 
 # disable touchscreen
-exec xinput disable "$(xinput | egrep 'touch|Finger' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
-bindsym $mod+t       exec xinput enable "$(xinput | egrep 'touch|Finger' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
-bindsym $mod+Shift+t exec xinput disable "$(xinput | egrep 'touch|Finger' | bqn -e '•Out {𝕩⊏˜(3+↕2)+⊐⟜1"id="⍷𝕩} •FChars "/dev/stdin"')"
+exec                      xinput | egrep 'touch|Finger|Pen Pen' | bqn -e '{•SH"xinput"‿"disable"‿𝕩}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
+bindsym $mod+t       exec xinput | egrep 'touch|Finger|Pen Pen' | bqn -e '{•SH"xinput"‿"enable" ‿𝕩}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
+bindsym $mod+Shift+t exec xinput | egrep 'touch|Finger|Pen Pen' | bqn -e '{•SH"xinput"‿"disable"‿𝕩}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
 
 # Sound settings using wpctl to adjust volume in Pipewire.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -63,10 +68,10 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec "rofi -eh 2 -theme-str '#window { fullscreen: false; }' -theme fullscreen-preview.rasi -show-icons -modi run,drun -show drun"
-bindsym $mod+a exec "rofi -eh 2 -theme-str '#window { fullscreen: false; }' -theme fullscreen-preview.rasi -show-icons -modi window -show window"
-bindsym $mod+Shift+f exec "rofi -theme-str '#window { fullscreen: false; }' -theme-str 'window {width: 80%;}' -eh 2 -theme fullscreen-preview.rasi -show-icons -modi filebrowser -show filebrowser"
-bindsym $mod+h exec "rofi -theme-str '#window { fullscreen: false; }' -theme-str 'window {width: 50%;}' -eh 2 -theme fullscreen-preview.rasi -modi keys -show keys"
+bindsym $mod+d       exec "rofi -no-config -eh 2 -theme-str '#window { fullscreen: false; }'                                         -theme fullscreen-preview.rasi -show-icons -modi run,drun    -show drun"
+bindsym $mod+a       exec "rofi -no-config -eh 2 -theme-str '#window { fullscreen: false; }'                                         -theme fullscreen-preview.rasi -show-icons -modi window      -show window"
+bindsym $mod+Shift+f exec "rofi -no-config       -theme-str '#window { fullscreen: false; }' -theme-str 'window {width: 80%;}' -eh 2 -theme fullscreen-preview.rasi -show-icons -modi filebrowser -show filebrowser"
+bindsym $mod+h       exec "rofi -no-config       -theme-str '#window { fullscreen: false; }' -theme-str 'window {width: 50%;}' -eh 2 -theme fullscreen-preview.rasi             -modi keys        -show keys"
 
 # change focus
 bindsym $mod+l focus up
@@ -158,7 +163,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -221,6 +226,7 @@ bar {
     wheel_up_cmd nop
     wheel_down_cmd nop
     status_command i3status
+    separator_symbol "::"
 }
 
 # use my system settings
@@ -256,7 +262,7 @@ bindsym $mod+x exec i3lock -i ~/Pictures/lockscreen.png
 #exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/lockscreen.png --nofork
 
 
-bindsym $mod+c exec "if command -v code &> /dev/null; then code ~/.config/i3/; else codium ~/brian-i3-config; fi"
+bindsym $mod+Shift+c exec "if command -v code &> /dev/null; then code ~/.config/i3/; else codium ~/brian-i3-config; fi"
 
 bindsym $mod+o exec ~/Desktop/Obsidian-1.6.7.AppImage
 
