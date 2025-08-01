@@ -305,6 +305,9 @@ mode "middle_mouse" {
 # Enter mode:
 bindsym $mod+m mode "middle_mouse"; exec xdotool mousedown --clearmodifiers 2
 
+bindsym $mod+u exec xdotool keyup Super_L keydown Control ; mode "default"
+bindsym $mod+Control+u exec xdotool keyup Super_L keyup Control ; mode "default"
+
 # Middle mouse button is very useful, so enable with $mod+m
 mode "middle_mouse_g" {
 
@@ -345,7 +348,7 @@ bindsym $mod+Shift+Return workspace next
 bindsym $mod+Shift+BackSpace workspace prev
 
 # Open music folder for manual delition
-bindsym $mod+Shift+m exec nemo /mnt/0AD47A53D47A414D/Users/brian/Music/
+bindsym $mod+Shift+m exec nemo /mnt/windows/Users/brian/Music/
 
 #for_window [title="Battery Warning"] sticky enable
 
@@ -363,4 +366,4 @@ bindsym $mod+Shift+p exec light -S "$(expr \"100.00\" != \"$(light -G -s sysfs/l
 #bindsym $mod+Shift+p exec sh -c 'xdotool getmouselocation | xmessage -file -'
 
 
-bindsym $mod+Control+Shift+m exec cd /mnt/0AD47A53D47A414D/Users/brian/Music && python3 /mnt/0AD47A53D47A414D/Users/brian/Music/brians-playlist-manager/downloader.py && cd -
+bindsym $mod+Control+Shift+m exec cd /mnt/windows/Users/brian/Music && python3 /mnt/windows/Users/brian/Music/brians-playlist-manager/downloader.py && cd -
