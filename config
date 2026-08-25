@@ -42,9 +42,9 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id copyq
 
 # disable touchscreen
-exec                      xinput | egrep 'touch|Finger|Pen' | bqn -e '{•SH"xinput"‿"disable"‿𝕩}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
-bindsym $mod+t       exec xinput | egrep 'touch|Finger|Pen' | bqn -e '{•SH"xinput"‿"enable" ‿𝕩}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
-bindsym $mod+Shift+t exec xinput | egrep 'touch|Finger|Pen' | bqn -e '{•SH"xinput"‿"disable"‿𝕩}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
+exec                      xinput | egrep 'touch|Finger|Pen' | bqn -e '{•SH"xinput"‿"disable"‿(∧`∘∊⟜((⋈⁼"0")+↕10)⊸/𝕩)}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
+bindsym $mod+t       exec xinput | egrep 'touch|Finger|Pen' | bqn -e '{•SH"xinput"‿"enable" ‿(∧`∘∊⟜((⋈⁼"0")+↕10)⊸/𝕩)}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
+bindsym $mod+Shift+t exec xinput | egrep 'touch|Finger|Pen' | bqn -e '{•SH"xinput"‿"disable"‿(∧`∘∊⟜((⋈⁼"0")+↕10)⊸/𝕩)}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
 
 # Sound settings using wpctl to adjust volume in Pipewire.
 set $refresh_i3status killall -SIGUSR1 i3status
