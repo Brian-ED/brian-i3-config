@@ -26,20 +26,7 @@ bindsym $mod+Tab workspace back_and_forth
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
-exec --no-startup-id ./border-hop.bash
-
-# The combination of xss-lock, nm-applet and wpctl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# I can't get this to work
-exec_always --no-startup-id copyq
+#exec --no-startup-id dex --autostart --environment i3
 
 # disable touchscreen
 exec                      xinput | egrep 'touch|Finger|Pen' | bqn -e '{•SH"xinput"‿"disable"‿(∧`∘∊⟜((⋈⁼"0")+↕10)⊸/𝕩)}˘ {𝕩⊏˜(3+↕2)+⌜˜/"id"⍷𝕩} •FChars "/dev/stdin"'
@@ -230,7 +217,7 @@ bar {
 }
 
 # use my system settings
-exec --no-startup-id csd-xsettings
+#exec --no-startup-id csd-xsettings
 
 # set monitor resolution (I don't remember why i ever needed this. I have used it in the last 3 months, but I don't remember why.)
 #Sxrandr --output eDP-1 --mode 1920x1080 # On Mint
@@ -244,10 +231,10 @@ bindsym shift+XF86MonBrightnessUp   exec brightnessctl --min-value=800 set +1%
 
 # set layout to faroese and with alt it's BQN
 #exec_always setxkbmap -layout fo -option # IDK sometimes i need this to reset keyboard
-exec_always setxkbmap -layout fo,bqn -option grp:lswitch
+#exec_always setxkbmap -layout fo,bqn -option grp:lswitch
 
 # Set scrolling to be the same as windows
-exec_always gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
+#exec_always gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
 
 # shortcut for lockscreen
 #interactive screenshot by pressing printscreen
@@ -264,11 +251,7 @@ bindsym $mod+x exec i3lock -i ~/Pictures/lockscreen.png
 
 bindsym $mod+Shift+c exec "if command -v code &> /dev/null; then code ~/.config/i3/; else codium ~/brian-i3-config; fi"
 
-bindsym $mod+o exec ~/Desktop/Obsidian-1.6.7.AppImage
-
 bindsym $mod+n sticky toggle
-
-exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10
 
 # Middle mouse button is very useful, so enable with $mod+m
 mode "middle_mouse" {
@@ -352,7 +335,7 @@ bindsym $mod+Shift+m exec nemo /mnt/windows/Users/brian/Music/
 
 #for_window [title="Battery Warning"] sticky enable
 
-# exec_always --no-startup-id feh --bg-scale ~/Pictures/background.jpg
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/background.png
 #exec --no-startup-id ~/.config/i3/motivation-morse.bash
 
 # Keyboard backlight toggle
