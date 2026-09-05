@@ -244,7 +244,7 @@ bindsym Print exec gnome-screenshot -i
 bindsym $mod+Print exec gnome-screenshot -a
 
 # Background image gen: convert -scale 1920x1580 -crop 1920x1580+0+200 background.jpg lockscreen.png
-bindsym $mod+x exec i3lock -i ~/Pictures/lockscreen.png
+bindsym $mod+x exec i3lock -i ~/Pictures/background.png
 # xss-lock enables suspending. I don't like it currently.
 #exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/lockscreen.png --nofork
 
