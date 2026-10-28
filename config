@@ -335,7 +335,6 @@ bindsym $mod+Shift+m exec nemo /mnt/windows/Users/brian/Music/
 
 #for_window [title="Battery Warning"] sticky enable
 
-exec_always --no-startup-id feh --no-fehbg --bg-scale i3lock -i ~/Pictures/background.png
 exec_always --no-startup-id ~/.config/i3/i3-battery-popup/i3-battery-popup -L 34 -I 2 -n -N -D -F ./log.txt
 bindsym $mod+z exec boomer
 
